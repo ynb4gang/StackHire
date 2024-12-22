@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackHire - IT Job Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<header class="navbar fixed-navbar">
+    <div class="container">
+        <h1 class="logo">Stack<span>Hire</span></h1>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="profile.html" class="nav-link">Profile</a></li>
+            <li><a href="admin.html" class="nav-link">Admin Panel</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container center-content">
+        <h2 class="hero-title">Welcome to <span class="highlight">StackHire</span></h2>
+        <p class="hero-description">Discover the best IT opportunities and build your career with ease.</p>
+        <a href="jobs.html" class="cta-btn">Explore Jobs</a>
+    </div>
+    <div id="interactive-background"></div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">Why Choose StackHire?</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <i class="icon fas fa-search"></i>
+                <h3>Top IT Jobs</h3>
+                <p>Explore thousands of curated job listings in the IT industry.</p>
+            </div>
+            <div class="feature-card">
+                <i class="icon fas fa-briefcase"></i>
+                <h3>Verified Employers</h3>
+                <p>Work with trusted companies and advance your career.</p>
+            </div>
+            <div class="feature-card">
+                <i class="icon fas fa-chart-line"></i>
+                <h3>Career Growth</h3>
+                <p>Use our platform to land your dream job and level up your skills.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container center-content">
+        <p>&copy; 2024 StackHire. Designed for IT Professionals.</p>
+    </div>
+</footer>
+
+<!-- Font Awesome for Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- JavaScript for Interactive Background -->
+<script>
+    const canvas = document.getElementById('interactive-background');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                dx: Math.random() * 2 - 1,
+                dy: Math.random() * 2 - 1,
+            });
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((particle) => {
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            ctx.fillStyle = '#0078ff';
+            ctx.fill();
+            particle.x += particle.dx;
+            particle.y += particle.dy;
+
+            if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
+            if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
+        });
+        requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+    });
+
+    initParticles();
+    animateParticles();
+</script>
+</body>
+</html>
